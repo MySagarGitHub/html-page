@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Schedule</title>
+    <nav>
+        <ul>
+            <li><a href="reservation.html">New Reservation</a></li>
+            <li><a href="tables.html">Edit Tables</a></li>
+        </ul>
+    </nav>
+    
+    <style>
+        /* Navigation Styles */
+nav {
+    margin: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background-color: #343a40;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background-color: #23272b;
+    border-radius: 5px;
+}
+
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Heading Styles */
+        h3.text-center {
+            color: #333;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        /* Form Styles */
+        .signup-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .btn-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .btn-dark:hover {
+            background-color: #23272b;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: #fff;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center"><br>Edit Schedule<br></h3>
+        <div class="col-md-6 offset-md-3">
+            <p class="text-white bg-dark text-center">Set the schedule for a specific date</p><br>
+            <div class="signup-form">
+                <form action="schedule.inc.php" method="post">
+                    <div class="form-group">
+                        <label>Enter Date</label>
+                        <input type="date" class="form-control" name="date" placeholder="Date" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Open Time</label>
+                        <input type="time" class="form-control" name="opentime" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Close Time</label>
+                        <input type="time" class="form-control" name="closetime" required="required">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="schedule" class="btn btn-dark btn-lg btn-block">Submit Schedule</button>
+                    </div>
+                </form>
+                <br><br>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <footer>
+        <!-- footer content -->
+    </footer>
+</body>
+</html>

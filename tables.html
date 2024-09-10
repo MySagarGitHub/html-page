@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Tables</title>
+    <nav>
+        <ul>
+            <li><a href="reservation.html">New Reservation</a></li>
+            <li><a href="schedule.html">Edit Schedule</a></li>
+        </ul>
+    </nav>
+    
+    <style>
+        /* Navigation Styles */
+nav {
+    margin: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background-color: #343a40;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background-color: #23272b;
+    border-radius: 5px;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h3.text-center {
+            color: #333;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .signup-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            border: none;
+        }
+        .btn-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .btn-dark:hover {
+            background-color: #23272b;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: #fff;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            .form-group {
+                margin-bottom: 10px;
+            }
+            .btn {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center">Edit Tables</h3>
+        <div class="col-md-6 offset-md-3">
+            <p id="message" class="text-white bg-dark text-center">Set the number of tables for a specific date</p><br>
+            <div class="signup-form">
+                <form id="tablesForm">
+                    <div class="form-group">
+                        <label for="date_tables">Enter Date</label>
+                        <input type="date" id="date_tables" class="form-control" name="date_tables" placeholder="Date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="num_tables">Number of tables</label>
+                        <input type="number" id="num_tables" class="form-control" min="1" name="num_tables" required>
+                        <small class="form-text text-muted">Default number is 20</small>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark btn-lg btn-block">Submit Tables</button>
+                    </div>
+                </form>
+                <br><br>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <footer>
+        <!-- footer content -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('tablesForm');
+            const messageElement = document.getElementById('message');
+
+            const userRole = 2;
+
+            if (userRole !== 2) {
+                messageElement.textContent = 'You do not have permission!';
+                messageElement.classList.remove('bg-dark');
+                messageElement.classList.add('bg-danger');
+                form.style.display = 'none';
+                return;
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                
+                const date = document.getElementById('date_tables').value;
+                const numTables = document.getElementById('num_tables').value;
+
+                if (!date || !numTables) {
+                    messageElement.textContent = 'Error, Empty fields';
+                    messageElement.classList.remove('bg-dark');
+                    messageElement.classList.add('bg-danger');
+                    return;
+                }
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'includes/tables.inc.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        messageElement.textContent = 'Tables were successfully submitted';
+                        messageElement.classList.remove('bg-dark');
+                        messageElement.classList.add('bg-success');
+                    } else {
+                        messageElement.textContent = 'Error submitting tables';
+                        messageElement.classList.remove('bg-dark');
+                        messageElement.classList.add('bg-danger');
+                    }
+                };
+                xhr.send(`date_tables=${encodeURIComponent(date)}&num_tables=${encodeURIComponent(numTables)}`);
+            });
+        });
+    </script>
+</body>
+</html>

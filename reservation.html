@@ -1,0 +1,130 @@
+<nav>
+    <ul>
+        <li><a href="schedule.html">Edit Schedule</a></li>
+        <li><a href="tables.html">Edit Tables</a></li>
+    </ul>
+</nav>
+
+<style>
+    /* Navigation Styles */
+nav {
+    margin: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background-color: #343a40;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background-color: #23272b;
+    border-radius: 5px;
+}
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #3e8e41;
+    }
+</style>
+
+<div class="container">
+    <h3 class="text-center">New Reservation</h3>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="fname" required>
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lname" required>
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control" name="date" required>
+        </div>
+        <div class="form-group">
+            <label>Time Zone</label>
+            <select class="form-control" name="time">
+                <option>12:00 - 16:00</option>
+                <option>16:00 - 20:00</option>
+                <option>20:00 - 00:00</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Number of Guests</label>
+            <input type="number" class="form-control" name="num_guests" min="1" required>
+        </div>
+        <div class="form-group">
+            <label>Telephone Number</label>
+            <input type="tel" class="form-control" name="tele" required>
+        </div>
+        <div class="form-group">
+            <label>Comments</label>
+            <textarea class="form-control" name="comments" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn">Submit Reservation</button>
+        </div>
+    </form>
+</div>
